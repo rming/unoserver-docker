@@ -18,7 +18,7 @@ WORKDIR /
 RUN addgroup -S ${GID} && adduser -S ${UID} -G ${GID}
 
 RUN apk add --no-cache \
-    bash curl \
+    bash curl git \
     py3-pip \
     libreoffice \
     supervisor
@@ -41,7 +41,7 @@ RUN apk add --no-cache \
 RUN rm -rf /var/cache/apk/* /tmp/*
 
 # https://github.com/unoconv/unoserver/
-RUN pip install --break-system-packages -U unoserver==${VERSION_UNOSERVER}
+RUN pip install --break-system-packages -U git+https://github.com/rming/unoserver.git
 
 # setup supervisor
 COPY --chown=${UID}:${GID} ${BUILD_CONTEXT} /

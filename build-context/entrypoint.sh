@@ -16,9 +16,6 @@ export PS1='\u@\h:\w\$ '
 build_unoserver_command() {
     local cmd="unoserver"
 
-    # Add executable parameter
-    cmd="$cmd --executable /usr/lib/libreoffice/program/soffice.bin"
-
     # Add interface parameter (always needed for non-interactive mode)
     if [ ! -t 0 ]; then
         cmd="$cmd --interface 0.0.0.0"
