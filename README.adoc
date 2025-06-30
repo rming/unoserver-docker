@@ -65,6 +65,46 @@ NOTE: You must use `--host-location` otherwise unoconvert will default to local 
 ----
 unoconvert --host-location remote example.docx example.pdf
 ----
+
+== Configuration
+
+=== Environment Variables
+
+You can configure unoserver behavior using environment variables. **If an environment variable is not set, the corresponding parameter will not be passed to unoserver** (using unoserver's default behavior).
+
+[cols="2,1,3"]
+|===
+|Environment Variable |Default Value |Description
+
+|`CONVERSION_TIMEOUT`
+|_not set_
+|Maximum time in seconds to wait for a conversion to finish. If not set, unoserver uses its default.
+
+|`STOP_AFTER`
+|_not set_
+|Number of conversions after which unoserver will stop (to avoid memory leaks). If not set, unoserver runs indefinitely.
+|===
+
+==== Example usage
+
+[source,bash]
+----
+# Set conversion timeout to 120 seconds and stop after 500 conversions
+docker run -p 2003:2003 -e CONVERSION_TIMEOUT=120 -e STOP_AFTER=500 ghcr.io/unoconv/unoserver-docker
+----
+
+[source,bash]
+----
+# Only set conversion timeout, let unoserver use its default for stop-after
+docker run -p 2003:2003 -e CONVERSION_TIMEOUT=180 ghcr.io/unoconv/unoserver-docker
+----
+
+[source,bash]
+----
+# Use unoserver defaults for all parameters
+docker run -p 2003:2003 ghcr.io/unoconv/unoserver-docker
+----
+
 == FAQ
 
 Q. Why do I get an error during when converting is writing/exporting to file?

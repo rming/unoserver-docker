@@ -33,8 +33,8 @@ RUN apk add --no-cache \
     ttf-hack \
     ttf-inconsolata \
     ttf-liberation \
-    ttf-mononoki  \
-    ttf-opensans   \
+    ttf-mononoki \
+    ttf-opensans \
     fontconfig && \
     fc-cache -f
 
